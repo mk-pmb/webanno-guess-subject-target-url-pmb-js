@@ -1,5 +1,5 @@
 { "name": "webanno-guess-subject-target-url-pmb",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Given a web annotation, guess the URL of its actual subject.",
   "keywords": [
     "w3-anno"
