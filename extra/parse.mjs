@@ -4,8 +4,9 @@ import guessTgt from '../guessTgt.mjs';
 
 
 const EX = function guessAndParse(anno) {
-  const tgt = guessTgt(anno);
-  const um = EX.safeUrlRgx.exec(tgt.toLowerCase());
+  const tgt = String(guessTgt(anno) || '');
+  if (!tgt) { throw new Error('No target given'); }
+  const um = EX.safeUrlRgx.exec(tgt);
   if (!um) { throw new Error('Unsupported target URL format: ' + tgt); }
   const pathParts = tgt.split(/\/+/).filter(Boolean).slice(1);
   let port = 0;
@@ -26,7 +27,7 @@ const EX = function guessAndParse(anno) {
 
 Object.assign(EX, {
 
-  safeUrlRgx: /^https?:\/{2}([a-z0-9_:\.\/\-]+)$/,
+  safeUrlRgx: /^https?:\/{2}([\w:\.\/\-]+)$/,
 
 });
 

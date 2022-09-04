@@ -4,7 +4,7 @@ import mustBe from 'typechecks-pmb/must-be';
 
 
 const EX = function guessSubjectTargetUrl(anno) {
-  let tgt = anno.target;
+  let tgt = (anno || false).target;
   if (Array.isArray(tgt)) {
     const n = tgt.length;
     if (n < 1) { throw new Error('Found no target'); }
