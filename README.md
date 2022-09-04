@@ -19,7 +19,7 @@ comment as its target, but it's most likely about the image, too.
 In that case, the subject is the image.
 
 Since there are so many things we could discuss using web annotations,
-I need a term that works for all of it – image, media files, physical books,
+I need a term that works for all of it – images, media files, physical books,
 dinosaur bones, people, living animals, ideas about future projects.
 
 To make things even harder, I'm not a native speaker of American English,
