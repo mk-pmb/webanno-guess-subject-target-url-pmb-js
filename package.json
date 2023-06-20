@@ -1,5 +1,5 @@
 { "name": "webanno-guess-subject-target-url-pmb",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Given a web annotation, guess the URL of its actual subject.",
   "keywords": [
     "w3-anno"
@@ -24,14 +24,14 @@
   "eslintConfig": { "extends": "nodejs-pmb" },
 
   "dependencies": {
-    "typechecks-pmb": "^0.200620.5"
+    "typechecks-pmb": "^0.230515.2"
   },
   "devDependencies": {
-    "eslint-config-nodejs-pmb": "^0.3.4",
+    "eslint-config-nodejs-pmb": "^0.3.5",
     "eslint-plugin-json-light-pmb": "^1.0.7",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-n": "^15.2.4",
     "eslint-pretty-pmb": "^1.0.5",
-    "nodemjs": "^0.1.11"
+    "nodemjs": "^0.1.13"
   },
   "peerDependencies": {
   },
