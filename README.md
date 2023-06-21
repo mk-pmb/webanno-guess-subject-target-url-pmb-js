@@ -30,14 +30,45 @@ so I hope my choice of "subject" is good enough.
 API
 ---
 
-This module exports one function:
+This module exports one function that holds some methods:
 
 ### guessSubjectTargetUrl(anno)
 
 `anno` is a plain old JS object that conforms to the
 [W3 annotation-model](https://www.w3.org/TR/annotation-model/).
 
-Returns the URL as a string, or `false` if no subject was found.
+Returns the URL as a string, or throw an error (see `.foundNone()` below)
+if no subject was found.
+
+
+
+### .foundNone()
+
+Throw an error complaining that no subject target was found.
+The error will have `.type === 'AnnoNoSubjectTarget'`.
+
+
+
+### .fallible(anno)
+
+Like `guessSubjectTargetUrl()`, but when no subject was found,
+don't throw an error, rather just return `false`.
+
+(In versions up to 1.0.2, this was described in README as the default
+behavior, but it was never actually implemented.)
+
+
+
+### .multi(anno)
+
+`anno` is as above, but multi-target annotations are supported.
+Returns an array of URLs. The array will be either empty,
+or contain truthy values.
+For well-formed supported input, that "truthy" more specifically means
+means non-empty strings, which should be URLs. Which may however be
+relative to the annotation's URL, so we can't always know for sure.
+
+
 
 
 

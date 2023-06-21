@@ -4,21 +4,38 @@ import mustBe from 'typechecks-pmb/must-be';
 
 
 const EX = function guessSubjectTargetUrl(anno) {
-  if (!anno) { EX.foundNone(); }
-  let tgt = EX.guessUrisFromTargetList(anno.target);
-  if (tgt.length) {
-    const inReplyTo = EX.guessUrisFromTargetList(anno['as:inReplyTo']);
-    tgt = tgt.filter(u => !inReplyTo.includes(u));
-  }
-  if (!tgt.length) { EX.foundNone(); }
-  if (tgt.length === 1) { return tgt[0]; }
-  throw new Error('Found too many potential subject targets');
+  return (EX.fallible(anno) || EX.foundNone());
 };
 
 
 Object.assign(EX, {
 
-  foundNone() { throw new Error('Found no potential subject target'); },
+  multi(anno) {
+    if (!anno) { return []; }
+    let tgt = EX.guessUrisFromTargetList(anno.target);
+    if (!tgt.length) { return tgt; }
+
+    const inReplyTo = EX.guessUrisFromTargetList(anno['as:inReplyTo']);
+    tgt = tgt.filter(u => !inReplyTo.includes(u));
+
+    return tgt;
+  },
+
+
+  fallible(anno) {
+    const tgt = EX.multi(anno);
+    if (!tgt.length) { return false; }
+    if (tgt.length === 1) { return tgt[0]; }
+    throw new Error('Found too many potential subject targets');
+  },
+
+
+  foundNone() {
+    const err = new Error('Found no potential subject target');
+    err.type = 'AnnoNoSubjectTarget';
+    throw err;
+  },
+
 
   guessUri(tgt) {
     if (!tgt) { return ''; }
@@ -27,6 +44,7 @@ Object.assign(EX, {
       || tgt.source
       || tgt));
   },
+
 
   guessUrisFromTargetList(list) {
     const urls = [];
@@ -39,6 +57,7 @@ Object.assign(EX, {
     });
     return urls;
   },
+
 
 });
 
