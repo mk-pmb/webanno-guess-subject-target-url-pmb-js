@@ -12,7 +12,6 @@ const EX = function guessSubjectTargetUrl(anno) {
   }
   if (!tgt.length) { EX.foundNone(); }
   if (tgt.length === 1) { return tgt[0]; }
-  console.debug('targets:', tgt);
   throw new Error('Found too many potential subject targets');
 };
 
