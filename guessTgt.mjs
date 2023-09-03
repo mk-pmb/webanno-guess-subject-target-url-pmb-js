@@ -18,7 +18,14 @@ Object.assign(EX, {
     const inReplyTo = EX.guessUrisFromTargetList(anno['as:inReplyTo']);
     tgt = tgt.filter(u => !inReplyTo.includes(u));
 
+    Object.assign(tgt, EX.multiResultApi);
     return tgt;
+  },
+
+
+  multiResultApi: {
+    primary() { return this[0] || false; },
+    additional() { return (this.length >= 2) && this.slice(1); },
   },
 
 
@@ -55,6 +62,7 @@ Object.assign(EX, {
       if (urls.includes(url)) { return; }
       urls.push(url);
     });
+    Object.assign(urls, EX.multiResultApi);
     return urls;
   },
 

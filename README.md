@@ -68,6 +68,16 @@ For well-formed supported input, that "truthy" more specifically means
 means non-empty strings, which should be URLs. Which may however be
 relative to the annotation's URL, so we can't always know for sure.
 
+The array will also hold some methods:
+* `.primary()` will return the first item if there is one, or `false`.
+* `.additional()` will return an array with all but the first item,
+  or `false` if that array would be empty.
+  * Treating the first target as "primary" is not a violation of
+    Anno Model section 3.2.6 "Cardinality of Bodies and Targets"
+    because it requires equal relatedness only for bodies.
+
+
+
 
 
 
